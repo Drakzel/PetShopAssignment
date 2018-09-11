@@ -10,7 +10,7 @@ namespace PetShop2018.Core.Entities
 
         public string Name { get; set; }
         public string Color { get; set; }
-        public string PreviousOwner { get; set; }
+        public PreviousOwner PreviousOwner { get; set; }
         public string AnimalCategory { get; set; }
         public double Price { get; set; }
         public DateTime BirthDate { get; set; }

@@ -10,10 +10,13 @@ namespace PetShop2018.Core.ApplicationService.Services
     public class PetService : IPetService
     {
         readonly IPetRepository _petRepository;
+        readonly IPreviousOwnerRepository _previousOwnerRepository;
 
-        public PetService(IPetRepository petRepository)
+        public PetService(IPetRepository petRepository,
+            IPreviousOwnerRepository previousOwnerRepository)
         {
             _petRepository = petRepository;
+            _previousOwnerRepository = previousOwnerRepository;
         }
 
         public Pet MakeTempPetItem()
@@ -23,7 +26,10 @@ namespace PetShop2018.Core.ApplicationService.Services
 
         public Pet CreatePet(Pet pet)
         {
-            return _petRepository.CreatePet(pet);
+            var createdPet = _petRepository.CreatePet(pet);
+            createdPet.PreviousOwner = _previousOwnerRepository.GetPreviousOwner(createdPet.PreviousOwner.Id);
+
+            return createdPet;
         }
 
         public Pet GetPet(int id)
@@ -33,7 +39,13 @@ namespace PetShop2018.Core.ApplicationService.Services
 
         public List<Pet> GetPets()
         {
-            return _petRepository.GetPets().ToList();
+            var list = _petRepository.GetPets().ToList();
+            /*foreach (var pet in list)
+            {
+                pet.PreviousOwner =
+                    _previousOwnerRepository.GetPreviousOwner(pet.PreviousOwner.Id);
+            }*/
+            return list;
         }
 
         public List<Pet> GetPetsByLowestPrice()

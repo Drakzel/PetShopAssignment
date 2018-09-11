@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PetShop2018.Core.Entities\PetShop2018.Core.Entities.csproj" />
+    <ProjectReference Include="..\PetShop2018.Core\PetShop2018.Core.csproj" />
+    <ProjectReference Include="..\PetShop2018.Infrastructure.Data\PetShop2018.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+</Project>
