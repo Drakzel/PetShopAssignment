@@ -30,6 +30,7 @@ namespace PetShop2018.RestApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Pet> Get(int id)
         {
+            if (id < 1) return BadRequest("Id must be greater then 0");
             return _petService.GetPet(id);
         }
 
@@ -37,14 +38,25 @@ namespace PetShop2018.RestApi.Controllers
         [HttpPost]
         public ActionResult<Pet> Post([FromBody] Pet pet)
         {
-            return _petService.CreatePet(pet);
+            try
+            {
+                return Ok(_petService.CreatePet(pet));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/pets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Pet pet)
+        public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
-            _petService.UpdatePet(pet);
+            if (id < 1 || id != pet.Id)
+            {
+                return BadRequest("Parameter Id and customer ID must be the same");
+            }
+            return Ok(_petService.UpdatePet(pet));
         }
 
         // DELETE api/pets/5

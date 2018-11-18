@@ -12,6 +12,7 @@ namespace PetShop2018.Core.ApplicationService
         Pet CreatePet(Pet pet);
 
         Pet GetPet(int id);
+        Pet GetPetWithOwner(int id);
         List<Pet> GetPets();
         List<Pet> GetPetsByLowestPrice();
         List<Pet> GetPetsByLowestPrice(int numberOfPets);

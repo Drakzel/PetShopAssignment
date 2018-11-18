@@ -7,7 +7,6 @@ namespace PetShop2018.Core.Entities
     public class Pet
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
         public string Color { get; set; }
         public PreviousOwner PreviousOwner { get; set; }

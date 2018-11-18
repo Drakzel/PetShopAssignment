@@ -45,7 +45,7 @@ namespace PetShop2018.Infrastructure.Data.Repositories
             return FakeDB.PreOwners;
         }
 
-        public PreviousOwner UpdateCustomer(PreviousOwner preOwnerChanges)
+        public PreviousOwner UpdatePreviousOwner(PreviousOwner preOwnerChanges)
         {
             var newPreOwner = GetPreviousOwner(preOwnerChanges.Id);
             if (newPreOwner != null)

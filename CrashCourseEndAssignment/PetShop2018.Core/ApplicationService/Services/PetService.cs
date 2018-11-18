@@ -26,26 +26,22 @@ namespace PetShop2018.Core.ApplicationService.Services
 
         public Pet CreatePet(Pet pet)
         {
-            var createdPet = _petRepository.CreatePet(pet);
-            createdPet.PreviousOwner = _previousOwnerRepository.GetPreviousOwner(createdPet.PreviousOwner.Id);
-
-            return createdPet;
+            //if (variable of pet, is null, then throw exception.
+            return _petRepository.CreatePet(pet);
+            
         }
 
         public Pet GetPet(int id)
         {
-            return _petRepository.GetPet(id);
+            var pet = _petRepository.GetPet(id);
+            
+            return pet;
         }
 
         public List<Pet> GetPets()
         {
-            var list = _petRepository.GetPets().ToList();
-            /*foreach (var pet in list)
-            {
-                pet.PreviousOwner =
-                    _previousOwnerRepository.GetPreviousOwner(pet.PreviousOwner.Id);
-            }*/
-            return list;
+            return _petRepository.GetPets().ToList();
+            
         }
 
         public List<Pet> GetPetsByLowestPrice()
@@ -77,6 +73,14 @@ namespace PetShop2018.Core.ApplicationService.Services
         public Pet DeletePet(int id)
         {
             return _petRepository.DeletePet(id);
+        }
+
+        public Pet GetPetWithOwner(int id)
+        {
+            var pet = _petRepository.GetPet(id);
+            pet.PreviousOwner = _previousOwnerRepository.GetPreviousOwner(pet.PreviousOwner.Id);
+            //Meaning our pet must have an existing id of the owner
+            return pet;
         }
     }
 }

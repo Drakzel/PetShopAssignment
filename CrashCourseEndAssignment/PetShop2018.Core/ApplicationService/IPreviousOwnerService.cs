@@ -10,6 +10,7 @@ namespace PetShop2018.Core.ApplicationService
         PreviousOwner CreatePreviousOwner (PreviousOwner preOwner);
 
         PreviousOwner GetPreviousOwner(int id);
+        PreviousOwner GetPreviousOwnerIncludePets(int id);
         List<PreviousOwner> GetPreviousOwners();
 
         PreviousOwner UpdatePreviousOwner(PreviousOwner preOwnerChanges);

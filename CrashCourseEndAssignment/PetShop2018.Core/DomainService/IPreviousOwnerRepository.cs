@@ -12,8 +12,8 @@ namespace PetShop2018.Core.DomainService
         PreviousOwner GetPreviousOwner(int id);
         IEnumerable<PreviousOwner> GetPreviousOwners();
 
-        PreviousOwner UpdateCustomer(PreviousOwner preOwnerChanges);
+        PreviousOwner UpdatePreviousOwner(PreviousOwner preOwnerChanges);
 
-        PreviousOwner DeleteCustomer(int id);
+        PreviousOwner DeletePreviousOwner(int id);
     }
 }

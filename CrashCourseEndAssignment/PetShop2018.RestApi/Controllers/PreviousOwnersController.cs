@@ -11,11 +11,11 @@ namespace PetShop2018.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PreviousOwnerController : ControllerBase
+    public class PreviousOwnersController : ControllerBase
     {
         private readonly IPreviousOwnerService _previousOwnerService;
 
-        public PreviousOwnerController(IPreviousOwnerService previousOwnerService)
+        public PreviousOwnersController(IPreviousOwnerService previousOwnerService)
         {
             _previousOwnerService = previousOwnerService;
         }
@@ -43,9 +43,13 @@ namespace PetShop2018.RestApi.Controllers
 
         // PUT: api/PreviousOwner/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] PreviousOwner preOwner)
+        public ActionResult<PreviousOwner> Put(int id, [FromBody] PreviousOwner preOwner)
         {
-            _previousOwnerService.UpdatePreviousOwner(preOwner);
+            if (id < 1 || id != preOwner.Id)
+            {
+                return BadRequest("Parameter Id and customer ID must be the same");
+            }
+            return Ok(_previousOwnerService.UpdatePreviousOwner(preOwner));
         }
 
         // DELETE: api/ApiWithActions/5
