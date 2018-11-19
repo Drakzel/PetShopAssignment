@@ -16,7 +16,7 @@ namespace PetShop2018.Infrastructure.Data.Repositories
             return preOwner;
         }
 
-        public PreviousOwner DeleteCustomer(int id)
+        public PreviousOwner DeletePreviousOwner(int id)
         {
             var preOwner = GetPreviousOwner(id);
             if (preOwner != null)

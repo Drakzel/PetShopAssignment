@@ -30,7 +30,7 @@ namespace PetShop2018.RestApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Pet> Get(int id)
         {
-            if (id < 1) return BadRequest("Id must be greater then 0");
+            if (id < 1) return BadRequest("Id must be greater than 0");
             return _petService.GetPet(id);
         }
 

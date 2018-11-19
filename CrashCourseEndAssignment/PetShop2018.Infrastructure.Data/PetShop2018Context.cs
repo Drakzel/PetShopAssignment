@@ -15,7 +15,7 @@ namespace PetShop2018.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Mapped the relations between entities
+            //Maps the relations between entities
             modelBuilder.Entity<Pet>()
                 .HasOne(p => p.PreviousOwner)
                 .WithMany(o => o.FormerPets)
