@@ -17,6 +17,7 @@ namespace PetShop2018.Core.ApplicationService
         List<Pet> GetPetsByLowestPrice();
         List<Pet> GetPetsByLowestPrice(int numberOfPets);
         List<Pet> GetPetsByCategory(string category);
+        List<Pet> GetFilteredPets(Filter filter);
 
         Pet UpdatePet(Pet petChanges);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using PetShop2018.Core.DomainService;
@@ -63,6 +64,19 @@ namespace PetShop2018.Core.ApplicationService.Services
         {
             var list = GetPets().Where(pet => pet.AnimalCategory.Equals(category));
             return list.ToList();
+        }
+
+        public List<Pet> GetFilteredPets(Filter filter)
+        {
+            if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
+            {
+                throw new InvalidDataException("Current page and items pr page, must be atleast 0.");
+            }
+            if ((filter.CurrentPage - 1 * filter.ItemsPrPage) >= _petRepository.Count())
+            {
+                throw new InvalidDataException("Index out of bounds, current page is too high.");
+            }
+            return _petRepository.GetPets(filter).ToList();
         }
 
         public Pet UpdatePet(Pet petChanges)

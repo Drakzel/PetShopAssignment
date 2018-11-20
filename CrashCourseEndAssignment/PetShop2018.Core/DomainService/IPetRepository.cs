@@ -10,10 +10,12 @@ namespace PetShop2018.Core.DomainService
         Pet CreatePet(Pet pet);
 
         Pet GetPet(int id);
-        IEnumerable<Pet> GetPets();
+        IEnumerable<Pet> GetPets(Filter filter = null);
 
         Pet UpdatePet(Pet petChanges);
 
         Pet DeletePet(int id);
+
+        int Count();
     }
 }

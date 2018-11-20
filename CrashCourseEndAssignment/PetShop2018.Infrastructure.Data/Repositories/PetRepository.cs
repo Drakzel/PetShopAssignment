@@ -63,5 +63,15 @@ namespace PetShop2018.Infrastructure.Data.Repositories
 
             return null;
         }
+
+        public IEnumerable<Pet> GetPets(Filter filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

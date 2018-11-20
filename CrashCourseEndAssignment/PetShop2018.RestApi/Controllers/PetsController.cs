@@ -21,9 +21,16 @@ namespace PetShop2018.RestApi.Controllers
 
         // GET api/pets
         [HttpGet]
-        public ActionResult<IEnumerable<Pet>> Get()
+        public ActionResult<IEnumerable<Pet>> Get([FromQuery] Filter filter)
         {
-            return _petService.GetPets();
+            try
+            {
+                return Ok(_petService.GetFilteredPets(filter));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/pets/5

@@ -17,6 +17,11 @@ namespace PetShop2018.Infrastructure.Data.SQLRepositories
             _ctx = ctx;
         }
 
+        public int Count()
+        {
+            return _ctx.Pets.Count();
+        }
+
         public Pet CreatePet(Pet pet)
         {
             /*if (pet.PreviousOwner != null &&
@@ -46,9 +51,14 @@ namespace PetShop2018.Infrastructure.Data.SQLRepositories
             return _ctx.Pets.Include(p => p.PreviousOwner).FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Pet> GetPets()
+        public IEnumerable<Pet> GetPets(Filter filter)
         {
-            return _ctx.Pets;
+            if (filter == null)
+            {
+                return _ctx.Pets;
+            }
+            return _ctx.Pets
+                .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage).Take(filter.ItemsPrPage);
         }
 
         public Pet UpdatePet(Pet petChanges)
